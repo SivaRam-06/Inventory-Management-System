@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>{{ 'Edit' if edit else 'Add' }} Category</h4>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.name.label(class_='form-label') }}{{ form.name(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.description.label(class_='form-label') }}{{ form.description(class_='form-control') }}</div>
+  <div>{{ form.submit(class_='btn btn-primary') }}</div>
+</form>
+{% endblock %}

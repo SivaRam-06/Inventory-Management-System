@@ -1,0 +1,6 @@
+Flask>=2.2
+Flask-Login
+Flask-WTF
+WTForms
+Flask-SQLAlchemy
+Werkzeug

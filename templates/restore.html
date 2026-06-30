@@ -1,0 +1,8 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>Restore Database</h4>
+<form method="post" enctype="multipart/form-data">
+  <div class="mb-3"><input type="file" name="db" class="form-control"></div>
+  <button class="btn btn-primary">Restore</button>
+</form>
+{% endblock %}

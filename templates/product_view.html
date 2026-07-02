@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <div class="card p-3">
+      <h4>{{ product.name }}</h4>
+      <p><strong>SKU:</strong> {{ product.sku }} | <strong>Brand:</strong> {{ product.brand }}</p>
+      <p>{{ product.description }}</p>
+      <p><strong>Quantity:</strong> {{ product.quantity }}</p>
+    </div>
+    <div class="card mt-3 p-3">
+      <h5>Inventory Logs</h5>
+      <ul class="list-group list-group-flush">
+        {% for l in logs %}
+          <li class="list-group-item">{{ l.created_at }} - {{ l.action_type }} - {{ l.quantity }} - {{ l.notes }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card p-3 text-center">
+      {% if product.image %}
+        <img src="/static/images/{{ product.image }}" class="img-fluid">
+      {% else %}
+        <img src="/static/images/default.png" class="img-fluid">
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

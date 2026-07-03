@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h4>Products</h4>
+  <a href="{{ url_for('add_product') }}" class="btn btn-primary">Add Product</a>
+</div>
+<form method="get" class="row g-2 mb-3">
+  <div class="col-md-4"><input name="q" value="{{ q }}" class="form-control" placeholder="Search products"></div>
+  <div class="col-md-3"><select name="category" class="form-select"><option value="">All Categories</option>{% for c in categories %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}</select></div>
+  <div class="col-md-3"><select name="supplier" class="form-select"><option value="">All Suppliers</option>{% for s in suppliers %}<option value="{{ s.id }}">{{ s.supplier_name }}</option>{% endfor %}</select></div>
+  <div class="col-md-2"><button class="btn btn-outline-secondary">Filter</button></div>
+</form>
+<table class="table table-hover">
+  <thead><tr><th>Name</th><th>SKU</th><th>Category</th><th>Qty</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    {% for p in pagination.items %}
+      <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.sku }}</td>
+        <td>{{ p.category.name if p.category else '' }}</td>
+        <td>{{ p.quantity }}</td>
+        <td>
+          {% if p.quantity <= 0 %}
+            <span class="badge bg-danger">Out</span>
+          {% elif p.quantity <= p.reorder_level %}
+            <span class="badge bg-warning text-dark">Low</span>
+          {% else %}
+            <span class="badge bg-success">In</span>
+          {% endif %}
+        </td>
+        <td>
+          <a class="btn btn-sm btn-info" href="{{ url_for('product_view', id=p.id) }}">View</a>
+          <a class="btn btn-sm btn-secondary" href="{{ url_for('edit_product', id=p.id) }}">Edit</a>
+          <form method="post" action="{{ url_for('delete_product', id=p.id) }}" style="display:inline" onsubmit="return confirm('Delete product?')">
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

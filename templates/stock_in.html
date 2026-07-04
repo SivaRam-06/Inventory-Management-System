@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>Stock In</h4>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.product_id.label }}{{ form.product_id(class_='form-select') }}</div>
+  <div class="mb-3">{{ form.quantity.label }}{{ form.quantity(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.notes.label }}{{ form.notes(class_='form-control') }}</div>
+  <div>{{ form.submit(class_='btn btn-success') }}</div>
+</form>
+{% endblock %}

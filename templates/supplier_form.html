@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h4>{{ 'Edit' if edit else 'Add' }} Supplier</h4>
+<form method="post">
+  {{ form.hidden_tag() }}
+  <div class="mb-3">{{ form.supplier_name.label(class_='form-label') }}{{ form.supplier_name(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.contact_person.label(class_='form-label') }}{{ form.contact_person(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.phone.label(class_='form-label') }}{{ form.phone(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.email.label(class_='form-label') }}{{ form.email(class_='form-control') }}</div>
+  <div class="mb-3">{{ form.address.label(class_='form-label') }}{{ form.address(class_='form-control') }}</div>
+  <div>{{ form.submit(class_='btn btn-primary') }}</div>
+</form>
+{% endblock %}
